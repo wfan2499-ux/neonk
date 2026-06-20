@@ -107,6 +107,13 @@ export default function Home() {
             <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-neon-magenta/8 blur-[100px] rounded-full" />
           </div>
 
+          {/* Hero tagline */}
+          <div className="relative z-[2] text-center px-4 mb-12">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+              نيون يوصلك بسرعة. بدون انتظار من برّه.
+            </h1>
+          </div>
+
           {/* Bottom fade to bg */}
           <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-bg to-transparent z-[1] pointer-events-none" />
         </section>
@@ -184,13 +191,9 @@ function ProductsSection() {
           </p>
         </motion.div>
 
-        {/* Horizontal snap carousel */}
+        {/* Product grid — CSS Grid, equal column widths */}
         <div
-          className="flex overflow-x-auto gap-4 md:gap-5 px-4 md:px-0 pb-2
-                     snap-x snap-mandatory
-                     [&::-webkit-scrollbar]:hidden
-                     [-ms-overflow-style:none]
-                     [scrollbar-width:none]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 px-4 md:px-0 pb-2"
         >
           {products.map((p, i) => (
             <motion.div
@@ -199,7 +202,7 @@ function ProductsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="double-bezel group shrink-0 w-[82vw] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] snap-center"
+              className="double-bezel group"
             >
               <div className="double-bezel-inner overflow-hidden flex flex-col h-full">
                 {/* Product image */}
@@ -240,7 +243,7 @@ function ProductsSection() {
                     </button>
                     {/* WhatsApp */}
                     <a
-                      href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`السلام عليكم - أبغى أطلب "${p.title}"\\n\\nعندي الصورة جاهزة للرفع`)}`}
+                      href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`مرحباً، عندي سؤال عن "${p.title}"`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-black font-bold text-sm hover:bg-white/90 active:scale-[0.98] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -263,7 +266,7 @@ function HowItWorks() {
   const steps = [
     {
       title: "اختر تصميمك",
-      desc: "تصفح التصاميم واختر اللي يناسب ذوقك - نيون، بورتريه، كانفاس، والمزيد",
+      desc: "اختر تصميمك من المجموعة",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -273,19 +276,20 @@ function HowItWorks() {
       ),
     },
     {
-      title: "ارفع صورتك",
-      desc: "أرسل لنا صورتك المفضلة عبر واتساب - نقبل جميع الصيغ والجودات العالية",
+      title: "ادفع أونلاين بأمان",
+      desc: "ادفع أونلاين بأمان",
       icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" />
+          <path d="M1 10h22" />
         </svg>
       ),
     },
     {
-      title: "استلمها لباب بيتك",
-      desc: "نطبع ونصنع لوحتك بعناية ونشحنها لك مجاناً خلال ٣-٥ أيام عمل",
+      title: "يوصلك بسرعة",
+      desc: "يوصلك بسرعة داخل السعودية - بدون انتظار شحن دولي",
       icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
           <path d="M22 4L12 14.01l-3-3" />
         </svg>
@@ -376,10 +380,10 @@ function CTASection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-5 tracking-tight">
-            جاهز <span className="gradient-text">تطلب</span> لوحتك؟
+            عندك سؤال عن أي تصميم؟
           </h2>
           <p className="text-text-secondary text-lg mb-8 max-w-md mx-auto leading-relaxed">
-            تواصل معنا الآن على واتساب وأرسل صورتك - نبدأ نشتغل عليها فوراً
+            تواصلنا واتساب ونرد عليك بسرعة.
           </p>
           <a
             href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - أبغى أطلب لوحة جدارية")}`}
@@ -390,7 +394,7 @@ function CTASection() {
             <span className="btn-icon-wrap-light">
               <WhatsAppIcon />
             </span>
-            اطلب الآن عبر واتساب
+            تواصل معنا واتساب
           </a>
         </motion.div>
       </div>
