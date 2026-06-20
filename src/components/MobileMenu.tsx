@@ -6,14 +6,6 @@ import Link from "next/link";
 
 const WHATSAPP = "966581194038";
 
-const links = [
-  { href: "/#products", label: "التصاميم" },
-  { href: "/#how-it-works", label: "كيف تطلب" },
-  { href: "/policies", label: "السياسات" },
-  { href: "/policies#returns", label: "الإسترجاع والضمان" },
-  { href: "/policies#shipping", label: "الشحن والتوصيل" },
-];
-
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -72,44 +64,37 @@ export default function MobileMenu() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[150] bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center px-6"
+            className="fixed inset-0 z-[150] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center px-6"
             onClick={close}
           >
-            {/* Links */}
+            {/* Menu content */}
             <nav
-              className="flex flex-col items-center gap-4 w-full max-w-sm"
+              className="flex flex-col items-center w-full max-w-xs"
               onClick={(e) => e.stopPropagation()}
             >
-              {links.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={reduce ? undefined : { opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -10 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: i * 0.05,
-                    ease: [0.32, 0.72, 0, 1],
-                  }}
-                  className="w-full"
-                >
-                  <Link
-                    href={link.href}
-                    onClick={close}
-                    className="block text-center py-4 text-2xl font-bold text-white/80 hover:text-white active:text-neon-cyan transition-colors active:scale-[0.97]"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+              {/* Primary links — main navigation */}
+              <div className="w-full space-y-2 mb-10">
+                <MenuLink href="/#products" label="التصاميم" delay={0} reduce={reduce} close={close} primary />
+                <MenuLink href="/#how-it-works" label="كيف تطلب" delay={1} reduce={reduce} close={close} primary />
+              </div>
+
+              {/* Divider */}
+              <div className="w-12 h-px bg-white/10 mb-10" />
+
+              {/* Secondary links — policies */}
+              <div className="w-full space-y-1 mb-12">
+                <MenuLink href="/policies" label="السياسات" delay={2} reduce={reduce} close={close} />
+                <MenuLink href="/policies#returns" label="الإسترجاع والضمان" delay={3} reduce={reduce} close={close} />
+                <MenuLink href="/policies#shipping" label="الشحن والتوصيل" delay={4} reduce={reduce} close={close} />
+              </div>
 
               {/* WhatsApp CTA */}
               <motion.div
-                initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, delay: links.length * 0.05, ease: [0.32, 0.72, 0, 1] }}
-                className="mt-8 w-full"
+                transition={{ duration: 0.4, delay: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                className="w-full"
               >
                 <a
                   href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - عندي استفسار عن اللوحات الجدارية")}`}
@@ -129,5 +114,45 @@ export default function MobileMenu() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+// ── Menu Link helper ───────────────────────────────────
+
+function MenuLink({
+  href,
+  label,
+  delay,
+  reduce,
+  close,
+  primary,
+}: {
+  href: string;
+  label: string;
+  delay: number;
+  reduce: boolean;
+  close: () => void;
+  primary?: boolean;
+}) {
+  return (
+    <motion.div
+      initial={reduce ? undefined : { opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={reduce ? undefined : { opacity: 0, y: -8 }}
+      transition={{ duration: 0.35, delay: delay * 0.06, ease: [0.32, 0.72, 0, 1] }}
+      className="w-full"
+    >
+      <Link
+        href={href}
+        onClick={close}
+        className={`block text-center py-3 rounded-xl transition-colors active:scale-[0.97] ${
+          primary
+            ? "text-2xl font-bold text-white hover:text-neon-cyan"
+            : "text-base text-white/60 hover:text-white/90"
+        }`}
+      >
+        {label}
+      </Link>
+    </motion.div>
   );
 }
