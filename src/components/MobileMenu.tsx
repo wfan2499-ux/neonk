@@ -14,18 +14,15 @@ const links = [
   { href: "/policies#shipping", label: "الشحن والتوصيل" },
 ];
 
-export default function MobileMenu({ onOpenChange }: { onOpenChange?: (open: boolean) => void }) {
+export default function MobileMenu() {
   const [open, setOpen] = useState(false);
 
   function toggle() {
-    const next = !open;
-    setOpen(next);
-    onOpenChange?.(next);
+    setOpen(!open);
   }
 
   function close() {
     setOpen(false);
-    onOpenChange?.(false);
   }
 
   useEffect(() => {
