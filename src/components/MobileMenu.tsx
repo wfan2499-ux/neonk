@@ -64,7 +64,7 @@ export default function MobileMenu() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[150] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center px-6"
+            className="fixed inset-0 z-[150] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-start overflow-y-auto pt-20 pb-10 px-6"
             onClick={close}
           >
             {/* Menu content */}
@@ -73,16 +73,16 @@ export default function MobileMenu() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Primary links — main navigation */}
-              <div className="w-full space-y-2 mb-10">
+              <div className="w-full space-y-2 mb-8">
                 <MenuLink href="/#products" label="التصاميم" delay={0} reduce={reduce} close={close} primary />
                 <MenuLink href="/#how-it-works" label="كيف تطلب" delay={1} reduce={reduce} close={close} primary />
               </div>
 
               {/* Divider */}
-              <div className="w-12 h-px bg-white/10 mb-10" />
+              <div className="w-12 h-px bg-white/10 mb-8" />
 
               {/* Secondary links — policies */}
-              <div className="w-full space-y-1 mb-12">
+              <div className="w-full space-y-1 mb-10">
                 <MenuLink href="/policies" label="السياسات" delay={2} reduce={reduce} close={close} />
                 <MenuLink href="/policies#returns" label="الإسترجاع والضمان" delay={3} reduce={reduce} close={close} />
                 <MenuLink href="/policies#shipping" label="الشحن والتوصيل" delay={4} reduce={reduce} close={close} />
