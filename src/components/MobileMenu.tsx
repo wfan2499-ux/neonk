@@ -78,8 +78,19 @@ export default function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="fixed inset-0 z-[calc(var(--z-overlay)+1)] flex flex-col items-center justify-start overflow-y-auto pt-24 pb-12 px-6 pointer-events-none"
+              className="fixed inset-0 z-[calc(var(--z-overlay)+1)] flex flex-col items-center overflow-y-auto pt-4 pb-12 px-6 pointer-events-none"
             >
+              {/* Close button */}
+              <button
+                onClick={close}
+                className="pointer-events-auto w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center mb-6 transition-colors"
+                aria-label="إغلاق القائمة"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+
               <nav className="flex flex-col items-center gap-5 w-full max-w-sm pointer-events-auto">
                 {links.map((link, i) => (
                   <motion.div
