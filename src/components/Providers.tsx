@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CartProvider } from "@/context/CartContext";
+import { CartProvider, useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -11,16 +11,31 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <CartProvider>
       {children}
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
-
-      {/* Floating cart button — fixed bottom-right */}
-      <button
-        onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bg-neon-cyan text-black shadow-[0_0_24px_rgba(0,240,255,0.3)] hover:scale-105 active:scale-95 transition-transform duration-200 flex items-center justify-center"
-        aria-label="فتح السلة"
-      >
-        <CartIcon />
-      </button>
+      <CartFAB onClick={() => setCartOpen(true)} />
     </CartProvider>
+  );
+}
+
+// ── Floating cart button with item count badge ─────────
+
+function CartFAB({ onClick }: { onClick: () => void }) {
+  const { itemCount } = useCart();
+
+  return (
+    <button
+      onClick={onClick}
+      className="fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bg-neon-cyan text-black shadow-[0_0_24px_rgba(0,240,255,0.3)] hover:scale-105 active:scale-95 transition-transform duration-200 flex items-center justify-center"
+      aria-label={`فتح السلة - ${itemCount} منتجات`}
+    >
+      <CartIcon />
+
+      {/* Badge */}
+      {itemCount > 0 && (
+        <span className="absolute -top-1 -right-1 min-w-[22px] h-[22px] rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center px-1 border-2 border-bg animate-in">
+          {itemCount}
+        </span>
+      )}
+    </button>
   );
 }
 
