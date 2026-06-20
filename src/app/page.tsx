@@ -69,13 +69,6 @@ export default function Home() {
             <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-72 h-48 sm:h-72 bg-neon-magenta/8 blur-[60px] sm:blur-[100px] rounded-full" />
           </div>
 
-          {/* Hero tagline */}
-          <div className="relative z-[2] text-center px-4 mb-8 sm:mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight max-w-md mx-auto">
-              نيون يوصلك بسرعة. بدون انتظار من برّه.
-            </h1>
-          </div>
-
           {/* Bottom fade to bg */}
           <div className="absolute bottom-0 inset-x-0 h-32 sm:h-40 bg-gradient-to-t from-bg to-transparent z-[1] pointer-events-none" />
         </section>
