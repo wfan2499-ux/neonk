@@ -103,7 +103,18 @@ export default function CheckoutPage() {
   // ── Helpers ────────────────────────────────────────────
 
   function updateShipping(field: keyof ShippingInfo, value: string) {
+    // Phone: strip non-digits, max 10
+    if (field === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
     setShipping((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function validatePhone(phone: string): string | null {
+    if (!phone) return "الرجاء إدخال رقم الجوال";
+    if (phone.length !== 10) return "رقم الجوال يجب أن يكون ١٠ أرقام";
+    if (!phone.startsWith("05")) return "رقم الجوال يجب أن يبدأ بـ 05";
+    return null; // valid
   }
 
   function generateOrderId(): string {
@@ -128,6 +139,11 @@ export default function CheckoutPage() {
     // Validate
     if (!shipping.name || !shipping.phone || !shipping.city || !shipping.address) {
       setError("الرجاء تعبئة جميع بيانات الشحن");
+      return;
+    }
+    const phoneError = validatePhone(shipping.phone);
+    if (phoneError) {
+      setError(phoneError);
       return;
     }
     if (!receiptFile) {
@@ -288,11 +304,13 @@ export default function CheckoutPage() {
                 </label>
                 <input
                   type="tel"
+                  inputMode="numeric"
                   value={shipping.phone}
                   onChange={(e) => updateShipping("phone", e.target.value)}
                   className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-white placeholder:text-text-secondary/40 focus:outline-none focus:border-neon-cyan/50 transition-colors"
                   placeholder="05xxxxxxxx"
                   dir="ltr"
+                  maxLength={10}
                 />
               </div>
 
