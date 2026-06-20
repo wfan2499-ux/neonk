@@ -133,13 +133,15 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
           واتساب
         </a>
 
-        {/* Mobile hamburger */}
-        <div className="shrink-0">
-          <MobileMenu onOpenChange={setMenuOpen} />
-        </div>
+        {/* Mobile hamburger — inside pill for positioning */}
       </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Hamburger stays visible when pill is hidden — positioned at right edge */}
+      <div className="absolute top-3 right-4 md:top-5 md:right-5 pointer-events-auto">
+        <MobileMenu onOpenChange={setMenuOpen} />
+      </div>
     </nav>
   );
 }
