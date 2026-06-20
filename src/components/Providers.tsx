@@ -28,6 +28,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 function CartFAB({ onClick }: { onClick: () => void }) {
   const { itemCount } = useCart();
 
+  if (itemCount === 0) return null;
+
   return (
     <button
       onClick={onClick}
