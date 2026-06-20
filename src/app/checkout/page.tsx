@@ -140,29 +140,63 @@ export default function CheckoutPage() {
     try {
       const newOrderId = generateOrderId();
 
-      // 1. Upload receipt to Supabase Storage
-      const safeExt = receiptFile.name.includes(".")
-        ? receiptFile.name.split(".").pop()!.replace(/[^a-zA-Z0-9]/g, "").slice(0, 5) || "jpg"
-        : "jpg";
-      const filePath = `${newOrderId}-${Date.now()}.${safeExt}`;
+      // 1. Upload receipt to Supabase Storage — foolproof path
+      const cleanPath = `receipt-${Date.now()}.png`;
+
+      // --- RUNTIME DIAGNOSTIC: verify env vars reach the browser ---
+      console.log(
+        "[neonk:checkout] Supabase URL:",
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        "| Key length:",
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.length,
+        "| Key starts with:",
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 15)
+      );
 
       const { data: uploadData, error: uploadError } = await getSupabase().storage
         .from("receipts")
-        .upload(filePath, receiptFile, {
+        .upload(cleanPath, receiptFile, {
           cacheControl: "3600",
           upsert: false,
         });
 
-      if (uploadError) throw new Error("فشل رفع الإيصال: " + uploadError.message);
+      if (uploadError) {
+        console.error("[neonk:checkout] Full Supabase upload error:", JSON.stringify(uploadError, null, 2));
+        throw new Error("فشل رفع الإيصال: " + uploadError.message);
+      }
 
       // 2. Get public URL
       const { data: urlData } = getSupabase().storage
         .from("receipts")
-        .getPublicUrl(filePath);
+        .getPublicUrl(cleanPath);
 
       const receiptUrl = urlData.publicUrl;
 
-      // 3. Build WhatsApp message
+      // 3. Insert order into Supabase orders table
+      const { error: dbError } = await getSupabase()
+        .from("orders")
+        .insert({
+          order_id: newOrderId,
+          name: shipping.name,
+          phone: shipping.phone,
+          city: shipping.city,
+          address: shipping.address,
+          items: items.map((i) => ({
+            title: i.title,
+            quantity: i.quantity,
+            price_halalas: i.price,
+          })),
+          total_halalas: totalHalalas,
+          receipt_url: receiptUrl,
+          status: "قيد التنفيذ",
+        });
+
+      if (dbError) {
+        console.error("[neonk:checkout] DB insert error:", JSON.stringify(dbError, null, 2));
+        throw new Error("فشل حفظ الطلب: " + dbError.message);
+      }
+
+      // 4. Build WhatsApp message
       const productsList = items
         .map(
           (item) =>
@@ -186,10 +220,10 @@ export default function CheckoutPage() {
         `📎 صورة الإيصال: ${receiptUrl}`,
       ].join("\n");
 
-      // 4. Open WhatsApp
+      // 5. Open WhatsApp
       const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 
-      // 5. Clear cart and show confirmation
+      // 6. Clear cart and show confirmation
       clearCart();
       setOrderId(newOrderId);
 
