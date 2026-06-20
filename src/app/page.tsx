@@ -24,6 +24,7 @@ const products = [
     img: "https://github.com/user-attachments/assets/bc78cba7-33e4-4dd7-8414-85efe54c70c5",
     color: "rgba(255,255,255,0.10)",
     price: 95000, // 950 SAR
+    contain: true,
   },
   {
     id: "gamer-zone",
@@ -32,6 +33,7 @@ const products = [
     img: "https://github.com/user-attachments/assets/1969338d-1c08-45e3-a613-2e32d3179779",
     color: "rgba(0,100,255,0.15)",
     price: 120000, // 1200 SAR
+    contain: true,
   },
   {
     id: "what-if",
@@ -207,16 +209,37 @@ function ProductsSection() {
               <div className="double-bezel-inner overflow-hidden flex flex-col h-full">
                 {/* Product image */}
                 <div className="relative aspect-[9/16] overflow-hidden">
-                  <Image
-                    src={p.img}
-                    alt={p.title}
-                    fill
-                    className="object-cover transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    sizes="(max-width: 768px) 82vw, (max-width: 1024px) 50vw, 33vw"
-                  />
+                  {'contain' in p ? (
+                    <>
+                      {/* Blurred background fill */}
+                      <Image
+                        src={p.img}
+                        alt=""
+                        fill
+                        className="object-cover scale-110 blur-[20px] saturate-150"
+                        sizes="(max-width: 768px) 82vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      {/* Foreground — fully visible, no crop */}
+                      <Image
+                        src={p.img}
+                        alt={p.title}
+                        fill
+                        className="object-contain relative z-10"
+                        sizes="(max-width: 768px) 82vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </>
+                  ) : (
+                    <Image
+                      src={p.img}
+                      alt={p.title}
+                      fill
+                      className="object-cover transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                      sizes="(max-width: 768px) 82vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  )}
                   {/* Hover color overlay */}
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-end p-4"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-end p-4 z-20"
                     style={{ background: `linear-gradient(to top, ${p.color}, transparent 60%)` }}
                   />
                 </div>
