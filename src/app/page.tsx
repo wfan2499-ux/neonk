@@ -166,11 +166,11 @@ function ProductsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="double-bezel group"
+              className="double-bezel group max-w-sm mx-auto md:max-w-none"
             >
               <div className="double-bezel-inner overflow-hidden flex flex-col h-full">
                 {/* Product image */}
-                <div className="relative aspect-[9/16] overflow-hidden">
+                <div className="relative aspect-[4/5] md:aspect-[9/16] overflow-hidden">
                   {'contain' in p ? (
                     <>
                       {/* Blurred background fill */}
@@ -374,7 +374,7 @@ function CTASection() {
             href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - أبغى أطلب لوحة جدارية")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group glow-btn inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#25D366] text-white font-bold text-xl hover:scale-[1.03] active:scale-[0.98] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="group glow-btn inline-flex items-center gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-full bg-[#25D366] text-white font-bold text-lg sm:text-xl hover:scale-[1.03] active:scale-[0.98] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
           >
             <span className="btn-icon-wrap-light">
               <WhatsAppIcon />
