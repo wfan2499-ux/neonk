@@ -45,7 +45,7 @@ export default function PoliciesPage() {
             </p>
           </div>
           <PolicyItem title="طرق الدفع المتاحة">
-            <strong>تحويل بنكي</strong> على رقم الآيبان الموجود في صفحة إتمام الطلب، أو <strong>STC Pay</strong> على الرقم 0581194038.
+            <strong>تحويل بنكي</strong> على رقم الآيبان الموجود في صفحة إتمام الطلب، أو <strong>STC Pay</strong> على الرقم <span dir="ltr">0581194038</span>.
           </PolicyItem>
           <PolicyItem title="تأكيد الدفع">
             بعد التحويل، ارفع صورة الإيصال في صفحة إتمام الطلب. يتم تأكيد طلبك وبدء تجهيز الشحن فور التحقق من الإيصال.
@@ -142,7 +142,7 @@ export default function PoliciesPage() {
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-full bg-[#25D366] text-white font-bold hover:bg-[#1da851] transition-colors"
             >
-              واتساب: +966 58 119 4038
+              واتساب: <span dir="ltr">+966 58 119 4038</span>
             </a>
             <a
               href="mailto:nneon.kk@gmail.com"
