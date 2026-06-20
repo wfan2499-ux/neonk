@@ -251,7 +251,7 @@ function ProductsSection() {
 
                   {/* Price */}
                   <p className="text-base font-bold text-neon-cyan mb-4">
-                    <span dir="ltr">{p.price / 100} ر.س</span>
+                    <SaudiRiyalPrice amount={p.price / 100} />
                   </p>
 
                   {/* Actions */}
@@ -491,5 +491,15 @@ function CardIcon() {
       <rect x="1" y="4" width="22" height="16" rx="2" />
       <path d="M1 10h22" />
     </svg>
+  );
+}
+
+// Saudi Riyal Price — renders new SAMA symbol left of the number
+function SaudiRiyalPrice({ amount }: { amount: number }) {
+  return (
+    <span dir="ltr" className="inline-flex items-baseline gap-[0.12em]">
+      <span className="sr-symbol" aria-hidden="true">{'\u{ea}'}</span>
+      <span>{amount}</span>
+    </span>
   );
 }

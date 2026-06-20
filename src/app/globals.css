@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════
+   SAUDI RIYAL NEW SYMBOL — SAMA official symbol
+   Font: @abdulrysr/saudi-riyal-new-symbol-font
+   ═══════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'SaudiRiyalSymbol';
+  src: url('/fonts/saudiriyalsymbol.ttf') format('truetype');
+  font-display: swap;
+}
+
+.sr-symbol {
+  font-family: 'SaudiRiyalSymbol', sans-serif;
+  font-weight: bold;
+}
+
+/* ═══════════════════════════════════════════════════
    DESIGN TOKENS
    Surface · Text · Accent · Z-Index
    ═══════════════════════════════════════════════════ */
