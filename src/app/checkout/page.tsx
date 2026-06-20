@@ -8,7 +8,7 @@ import { getSupabase } from "@/lib/supabase";
 import SaudiRiyalPrice from "@/components/SaudiRiyalPrice";
 
 const WHATSAPP = "966581194038";
-const IBAN = "SA00 0000 0000 0000 0000 0000"; // placeholder
+const IBAN = "SA66 8000 0859 6080 1586 7678";
 const STC_PAY = "0581194038";
 
 interface ShippingInfo {

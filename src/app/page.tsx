@@ -231,7 +231,7 @@ function ProductsSection() {
                       href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`مرحباً، عندي سؤال عن "${p.title}"`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-black font-bold text-sm hover:bg-white/90 active:scale-[0.98] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#25D366] text-white font-bold text-sm hover:bg-[#25D366]/90 active:scale-[0.98] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     >
                       <WhatsAppIcon />
                       واتساب
