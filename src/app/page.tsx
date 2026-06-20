@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "motion/react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "@/components/MobileMenu";
@@ -39,6 +40,7 @@ const products = [
 
 export default function Home() {
   const reduce = useReducedMotion();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Page-level scroll — nav fades over first 400px of scrolling
   const { scrollY } = useScroll();
@@ -46,7 +48,15 @@ export default function Home() {
 
   return (
     <>
-      <Nav style={reduce ? {} : { opacity: navOpacity }} />
+      {/* Nav — hidden when menu is open */}
+      {!menuOpen && (
+        <Nav style={reduce ? {} : { opacity: navOpacity }} />
+      )}
+
+      {/* Hamburger button — always visible at top-right */}
+      <div className="fixed top-3 right-4 md:top-5 md:right-5 z-[200] md:hidden">
+        <MobileMenu open={menuOpen} onOpenChange={setMenuOpen} />
+      </div>
       <main>
         {/* Hero */}
         <section className="relative min-h-[100dvh] flex flex-col items-center justify-end pb-16 md:pb-24 overflow-hidden">
@@ -123,11 +133,6 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
           <WhatsAppIcon />
           واتساب
         </a>
-
-        {/* Mobile hamburger */}
-        <div className="shrink-0">
-          <MobileMenu />
-        </div>
       </motion.div>
     </nav>
   );

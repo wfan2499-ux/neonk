@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 
 const WHATSAPP = "966581194038";
@@ -14,17 +14,12 @@ const links = [
   { href: "/policies#shipping", label: "الشحن والتوصيل" },
 ];
 
-export default function MobileMenu() {
-  const [open, setOpen] = useState(false);
+interface Props {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
-  function toggle() {
-    setOpen(!open);
-  }
-
-  function close() {
-    setOpen(false);
-  }
-
+export default function MobileMenu({ open, onOpenChange }: Props) {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -34,9 +29,9 @@ export default function MobileMenu() {
     <>
       {/* ☰ Hamburger button */}
       <button
-        onClick={toggle}
+        onClick={() => onOpenChange(true)}
         aria-label="فتح القائمة"
-        className="flex md:hidden items-center justify-center w-11 h-11 rounded-full bg-surface border border-white/15"
+        className="flex items-center justify-center w-11 h-11 rounded-full bg-surface border border-white/15"
       >
         <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
           <rect width="20" height="2" rx="1" fill="white" />
@@ -58,7 +53,7 @@ export default function MobileMenu() {
             {/* ✕ Close button — top right */}
             <div className="flex justify-end pt-6 pb-2">
               <button
-                onClick={close}
+                onClick={() => onOpenChange(false)}
                 aria-label="إغلاق القائمة"
                 className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
               >
@@ -81,7 +76,7 @@ export default function MobileMenu() {
                 >
                   <Link
                     href={link.href}
-                    onClick={close}
+                    onClick={() => onOpenChange(false)}
                     className="block text-center py-4 text-2xl font-bold text-white/80 hover:text-white active:text-neon-cyan transition-colors"
                   >
                     {link.label}
@@ -102,7 +97,7 @@ export default function MobileMenu() {
                 href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - عندي استفسار عن اللوحات الجدارية")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={close}
+                onClick={() => onOpenChange(false)}
                 className="flex items-center justify-center gap-2.5 w-full py-4 rounded-full bg-[#25D366] text-white font-bold text-lg active:scale-95 transition-transform"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
