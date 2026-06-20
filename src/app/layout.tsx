@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import ConsentBanner from "@/components/ConsentBanner";
+import Providers from "@/components/Providers";
 import "./globals.css";
 
 const cairo = Cairo({
@@ -15,21 +16,20 @@ export const metadata: Metadata = {
     template: "%s | Neon-K",
   },
   description:
-    "حوّل صورتك للوحة جدارية فنية! ٤ تصاميم: نيون، كانفاس، كريستال، أكريليك عائم. ارفع صورتك واستلمها خلال ٣-٥ أيام.",
+    "تصاميم نيون جاهزة وجودة عالية، توصل بسرعة داخل السعودية. اختر تصميمك، ادفع أونلاين، ويوصلك بدون انتظار شحن دولي.",
   keywords: [
-    "لوحات جدارية",
-    "طباعة صور",
-    "نيون",
-    "كانفاس",
-    "أكريليك",
-    "ديكور",
+    "لوحات نيون",
+    "نيون جداري",
+    "ديكور نيون",
+    "تصاميم نيون",
     "هدايا",
+    "neon signs",
     "wall art",
-    "custom print",
+    "Saudi Arabia",
   ],
   openGraph: {
-    title: "Neon-K | لوحات جدارية مخصصة",
-    description: "حوّل صورتك للوحة جدارية! ٤ تصاميم مميزة.",
+    title: "Neon-K | لوحات نيون جاهزة",
+    description: "تصاميم نيون جاهزة توصلك بسرعة داخل السعودية.",
     type: "website",
     locale: "ar_SA",
   },
@@ -44,8 +44,10 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className="dark h-full">
       <body className={`${cairo.variable} font-sans min-h-full bg-bg text-text antialiased`}>
-        {children}
-        <ConsentBanner />
+        <Providers>
+          {children}
+          <ConsentBanner />
+        </Providers>
         <div className="noise-overlay" aria-hidden="true" />
       </body>
     </html>
