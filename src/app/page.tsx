@@ -18,24 +18,6 @@ const products = [
     price: 95000, // 950 SAR
   },
   {
-    id: "memories",
-    title: 'لوحة نيون "Memories"',
-    desc: "خط نيون أبيض انسيابي بإضاءة دافئة - تفاصيل بسيطة تناسب أي جدار",
-    img: "https://github.com/user-attachments/assets/bc78cba7-33e4-4dd7-8414-85efe54c70c5",
-    color: "rgba(255,255,255,0.10)",
-    price: 95000, // 950 SAR
-    contain: true,
-  },
-  {
-    id: "gamer-zone",
-    title: 'لوحة نيون "Gamer Zone"',
-    desc: "إطار نيون بلونين أزرق وأحمر - يحدد ركن الجيمنج بشكل نظيف واحترافي",
-    img: "https://github.com/user-attachments/assets/1969338d-1c08-45e3-a613-2e32d3179779",
-    color: "rgba(0,100,255,0.15)",
-    price: 120000, // 1200 SAR
-    contain: true,
-  },
-  {
     id: "what-if",
     title: 'لوحة نيون "What if it all works out"',
     desc: "خط نيون أبيض بستايل عناوين الصحف - تفاصيل دقيقة بدون تعقيد",
@@ -186,7 +168,7 @@ function ProductsSection() {
           className="text-center mb-14 md:mb-20 px-4"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            تصاميمنا <span className="gradient-text">الخمسة</span>
+            <span className="gradient-text">التصاميم</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-lg mx-auto">
             كل تصميم له شخصيته الخاصة - اختر اللي يناسب ذوقك ومكانك
