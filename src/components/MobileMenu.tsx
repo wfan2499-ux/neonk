@@ -24,57 +24,71 @@ export default function MobileMenu() {
 
   return (
     <>
-      {/* Hamburger button */}
+      {/* ☰ Hamburger button */}
       <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "إغلاق" : "فتح"}
+        onClick={() => setOpen(true)}
+        aria-label="فتح القائمة"
         className="flex md:hidden items-center justify-center w-11 h-11 rounded-full bg-surface border border-white/15"
       >
-        <div className="w-[18px] h-[14px] relative">
-          <span className={`absolute left-0 w-full h-[2px] rounded-full bg-white transition-all duration-300 ${open ? "top-[6px] rotate-45" : "top-0"}`} />
-          <span className={`absolute top-1/2 left-0 w-full h-[2px] rounded-full bg-white -translate-y-1/2 transition-all duration-200 ${open ? "opacity-0" : ""}`} />
-          <span className={`absolute left-0 w-full h-[2px] rounded-full bg-white transition-all duration-300 ${open ? "bottom-[6px] -rotate-45" : "bottom-0"}`} />
-        </div>
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <rect width="20" height="2" rx="1" fill="white" />
+          <rect y="6" width="20" height="2" rx="1" fill="white" />
+          <rect y="12" width="20" height="2" rx="1" fill="white" />
+        </svg>
       </button>
 
-      {/* Overlay menu */}
+      {/* Full-screen overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[150] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center gap-6 px-6"
-            onClick={() => setOpen(false)}
+            transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+            className="fixed inset-0 z-[150] bg-black/90 backdrop-blur-xl flex flex-col px-6"
           >
-            {/* Links */}
-            {links.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="w-full max-w-xs"
+            {/* ✕ Close button — top right */}
+            <div className="flex justify-end pt-6 pb-2">
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="إغلاق القائمة"
+                className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
               >
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block text-center py-4 text-2xl font-bold text-white/80 hover:text-white active:text-neon-cyan transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-            {/* WhatsApp */}
+            {/* Navigation links — centered */}
+            <nav className="flex-1 flex flex-col items-center justify-center gap-4 -mt-12">
+              {links.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, delay: i * 0.06, ease: [0.32, 0.72, 0, 1] }}
+                  className="w-full max-w-xs"
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-center py-4 text-2xl font-bold text-white/80 hover:text-white active:text-neon-cyan transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            {/* WhatsApp CTA — fixed at bottom */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, delay: links.length * 0.05 }}
-              className="w-full max-w-xs mt-4"
+              transition={{ duration: 0.35, delay: links.length * 0.06, ease: [0.32, 0.72, 0, 1] }}
+              className="w-full max-w-xs mx-auto pb-10"
             >
               <a
                 href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - عندي استفسار عن اللوحات الجدارية")}`}
