@@ -9,7 +9,7 @@ import SaudiRiyalPrice from "@/components/SaudiRiyalPrice";
 
 const WHATSAPP = "966581194038";
 const IBAN = "SA00 0000 0000 0000 0000 0000"; // placeholder
-const STC_PAY = "966581194038";
+const STC_PAY = "0581194038";
 
 interface ShippingInfo {
   name: string;
