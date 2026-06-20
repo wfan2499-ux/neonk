@@ -4,7 +4,7 @@ import { useState, useRef, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import SaudiRiyalPrice from "@/components/SaudiRiyalPrice";
 
 const WHATSAPP = "966581194038";
@@ -141,10 +141,12 @@ export default function CheckoutPage() {
       const newOrderId = generateOrderId();
 
       // 1. Upload receipt to Supabase Storage
-      const fileExt = receiptFile.name.split(".").pop() || "jpg";
-      const filePath = `${newOrderId}-${Date.now()}.${fileExt}`;
+      const safeExt = receiptFile.name.includes(".")
+        ? receiptFile.name.split(".").pop()!.replace(/[^a-zA-Z0-9]/g, "").slice(0, 5) || "jpg"
+        : "jpg";
+      const filePath = `${newOrderId}-${Date.now()}.${safeExt}`;
 
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { data: uploadData, error: uploadError } = await getSupabase().storage
         .from("receipts")
         .upload(filePath, receiptFile, {
           cacheControl: "3600",
@@ -154,7 +156,7 @@ export default function CheckoutPage() {
       if (uploadError) throw new Error("فشل رفع الإيصال: " + uploadError.message);
 
       // 2. Get public URL
-      const { data: urlData } = supabase.storage
+      const { data: urlData } = getSupabase().storage
         .from("receipts")
         .getPublicUrl(filePath);
 
