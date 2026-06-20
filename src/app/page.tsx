@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion, type MotionValue } from "motion/react";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -99,11 +99,17 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
 
   return (
     <nav className="fixed top-0 inset-x-0 z-40 flex justify-center pt-3 md:pt-5 px-4 pointer-events-none">
-      {/* Floating glass pill — fades on scroll, hides when menu open */}
-      <motion.div
-        className={`flex items-center gap-3 md:gap-5 w-full sm:w-auto sm:min-w-[420px] max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto transition-all duration-300 ${menuOpen ? "opacity-0 scale-95 pointer-events-none" : ""}`}
-        style={style}
-      >
+      {/* Floating glass pill */}
+      <AnimatePresence>
+        {!menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-3 md:gap-5 w-full sm:w-auto sm:min-w-[420px] max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto"
+            style={style}
+          >
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center">
           <img
@@ -132,6 +138,8 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
           <MobileMenu onOpenChange={setMenuOpen} />
         </div>
       </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
