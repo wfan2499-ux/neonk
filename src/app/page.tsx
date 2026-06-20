@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "motion/react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "@/components/MobileMenu";
@@ -94,11 +95,13 @@ export default function Home() {
 }
 
 function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="fixed top-0 inset-x-0 z-40 flex justify-center pt-3 md:pt-5 px-4 pointer-events-none">
-      {/* Floating glass pill — fades on scroll */}
+      {/* Floating glass pill — fades on scroll, hides when menu open */}
       <motion.div
-        className="flex items-center gap-3 md:gap-5 w-full sm:w-auto sm:min-w-[420px] max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto transition-opacity duration-150"
+        className={`flex items-center gap-3 md:gap-5 w-full sm:w-auto sm:min-w-[420px] max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto transition-all duration-300 ${menuOpen ? "opacity-0 scale-95 pointer-events-none" : ""}`}
         style={style}
       >
         {/* Logo */}
@@ -126,7 +129,7 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
 
         {/* Mobile hamburger */}
         <div className="shrink-0">
-          <MobileMenu />
+          <MobileMenu onOpenChange={setMenuOpen} />
         </div>
       </motion.div>
     </nav>

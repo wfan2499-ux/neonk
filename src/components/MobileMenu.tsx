@@ -14,8 +14,19 @@ const links = [
   { href: "/policies#shipping", label: "الشحن والتوصيل" },
 ];
 
-export default function MobileMenu() {
+export default function MobileMenu({ onOpenChange }: { onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(false);
+
+  function toggle() {
+    const next = !open;
+    setOpen(next);
+    onOpenChange?.(next);
+  }
+
+  function close() {
+    setOpen(false);
+    onOpenChange?.(false);
+  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -26,7 +37,7 @@ export default function MobileMenu() {
     <>
       {/* ☰ Hamburger button */}
       <button
-        onClick={() => setOpen(true)}
+        onClick={toggle}
         aria-label="فتح القائمة"
         className="flex md:hidden items-center justify-center w-11 h-11 rounded-full bg-surface border border-white/15"
       >
@@ -50,7 +61,7 @@ export default function MobileMenu() {
             {/* ✕ Close button — top right */}
             <div className="flex justify-end pt-6 pb-2">
               <button
-                onClick={() => setOpen(false)}
+                onClick={close}
                 aria-label="إغلاق القائمة"
                 className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
               >
@@ -73,7 +84,7 @@ export default function MobileMenu() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={close}
                     className="block text-center py-4 text-2xl font-bold text-white/80 hover:text-white active:text-neon-cyan transition-colors"
                   >
                     {link.label}
@@ -94,7 +105,7 @@ export default function MobileMenu() {
                 href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("السلام عليكم - عندي استفسار عن اللوحات الجدارية")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
+                onClick={close}
                 className="flex items-center justify-center gap-2.5 w-full py-4 rounded-full bg-[#25D366] text-white font-bold text-lg active:scale-95 transition-transform"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
