@@ -65,8 +65,8 @@ export default function Home() {
 
           {/* Neon glow accents over hero */}
           <div className="absolute inset-0 z-[1] pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-48 md:w-80 h-48 md:h-80 bg-neon-cyan/10 blur-[80px] md:blur-[100px] rounded-full" />
-            <div className="absolute bottom-1/4 right-1/4 w-48 md:w-72 h-48 md:h-72 bg-neon-magenta/8 blur-[80px] md:blur-[100px] rounded-full" />
+            <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-neon-cyan/10 blur-[100px] rounded-full" />
+            <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-neon-magenta/8 blur-[100px] rounded-full" />
           </div>
 
           {/* Hero tagline */}
@@ -98,7 +98,7 @@ function Nav({ style }: { style?: { opacity?: MotionValue<number> } }) {
     <nav className="fixed top-0 inset-x-0 z-40 flex justify-center pt-3 md:pt-5 px-4 pointer-events-none">
       {/* Floating glass pill — fades on scroll */}
       <motion.div
-        className="flex items-center gap-3 md:gap-5 w-full max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto transition-opacity duration-150"
+        className="flex items-center gap-3 md:gap-5 w-full sm:w-auto sm:min-w-[420px] max-w-xl rounded-full bg-bg/75 backdrop-blur-2xl border border-white/8 px-4 md:px-5 py-2.5 shadow-[0_4px_32px_rgba(0,0,0,0.4),0_1px_0_rgba(255,255,255,0.04)_inset] pointer-events-auto transition-opacity duration-150"
         style={style}
       >
         {/* Logo */}
@@ -313,7 +313,7 @@ function HowItWorks() {
                 aria-hidden="true"
               />
 
-              <div className="space-y-8 md:space-y-16">
+              <div className="space-y-12 md:space-y-16">
                 {steps.map((step, i) => (
                   <motion.div
                     key={step.title}
