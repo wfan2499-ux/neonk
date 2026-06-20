@@ -9,7 +9,6 @@ export default function PoliciesPage() {
       {/* Nav */}
       <nav className="flex items-center justify-between px-4 md:px-8 py-3 border-b border-border">
         <a href="/" className="flex items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.svg" alt="Neon-K" className="h-8 w-auto" />
         </a>
         <a
@@ -26,49 +25,49 @@ export default function PoliciesPage() {
         </h1>
         <p className="text-text-secondary mb-12">آخر تحديث: يونيو ٢٠٢٦</p>
 
-        {/* How it works - quick overview for customers */}
+        {/* How it works */}
         <PolicySection id="how" title="كيف نعمل؟">
-          <PolicyItem title="خطوات الطلب">
-            تصفح التصاميم الأربعة ← اختر التصميم اللي يعجبك ← أرسل صورتك عبر واتساب ← نصنع لوحتك ← تستلمها لباب بيتك! العملية بسيطة وسريعة.
+          <PolicyItem title="منتجات جاهزة">
+            جميع تصاميمنا منتجات جاهزة ومصنعة مسبقاً بجودة عالية — اختر التصميم، ادفع، ويوصلك. ما تحتاج ترفع صور ولا تنتظر تصنيع.
           </PolicyItem>
-          <PolicyItem title="مدة التصنيع والتوصيل">
-            نصنع لوحتك بعناية ونشحنها لك <strong>مجاناً</strong> خلال <strong>٣-٥ أيام عمل</strong>.
+          <PolicyItem title="مدة التوصيل">
+            منتجك يوصلك <strong>بسرعة داخل المملكة العربية السعودية</strong> بدون انتظار شحن دولي. مدة التوصيل من ٣-٥ أيام عمل.
           </PolicyItem>
         </PolicySection>
 
-        {/* Payment - new section */}
+        {/* Payment */}
         <PolicySection id="payment" title="الدفع">
-          <div className="neon-border rounded-xl p-5 mb-6 border-neon-lime/20 bg-neon-lime/[0.02]">
+          <div className="neon-border rounded-xl p-5 mb-6 border-neon-cyan/20 bg-neon-cyan/[0.02]">
             <p className="text-sm leading-relaxed">
-              <strong className="text-neon-lime">الدفع عند الاستلام:</strong> جميع طلباتنا
-              بنظام الدفع عند الاستلام (Cash on Delivery). تدفع المبلغ كامل وقت استلام
-              لوحتك — بدون دفع مقدماً وبدون بطاقات ائتمانية.
+              <strong className="text-neon-cyan">تحويل بنكي أو STC Pay:</strong> حول
+              المبلغ على حسابنا، ارفع صورة الإيصال، ونشحن طلبك. جميع الطلبات مدفوعة
+              مقدماً.
             </p>
           </div>
-          <PolicyItem title="طريقة الدفع">
-            <strong className="text-neon-lime">نقداً عند باب بيتك</strong> عند استلام الشحنة. المندوب يستلم المبلغ وتسلمك لوحتك.
+          <PolicyItem title="طرق الدفع المتاحة">
+            <strong>تحويل بنكي</strong> على رقم الآيبان الموجود في صفحة إتمام الطلب، أو <strong>STC Pay</strong> على الرقم 0581194038.
           </PolicyItem>
-          <PolicyItem title="ما المبلغ اللي لازم يتوفر؟">
-            المبلغ الكامل المتفق عليه عند تأكيد الطلب. الأسعار تختلف حسب التصميم والمقاس — تتفق معنا عالسعر قبل نبدأ التصنيع.
+          <PolicyItem title="تأكيد الدفع">
+            بعد التحويل، ارفع صورة الإيصال في صفحة إتمام الطلب. يتم تأكيد طلبك وبدء تجهيز الشحن فور التحقق من الإيصال.
           </PolicyItem>
-          <PolicyItem title="الخصوصية">
-            لا نجمع أي بيانات دفع ولا بطاقات ولا حسابات بنكية لأنك تدفع عند الاستلام فقط.
+          <PolicyItem title="الخصوصية المالية">
+            لا نخزن أي بيانات بنكية أو بطاقات. الإيصال يستخدم لمرة واحدة لتأكيد التحويل فقط.
           </PolicyItem>
         </PolicySection>
 
         {/* Privacy */}
         <PolicySection id="privacy" title="سياسة الخصوصية">
           <PolicyItem title="جمع المعلومات">
-            نقوم بجمع المعلومات التالية: الاسم، رقم الجوال، والعنوان لغرض التوصيل. الصور المرفوعة من قبل العميل تستخدم لغرض التصنيع فقط.
+            نقوم بجمع المعلومات التالية: الاسم، رقم الجوال، المدينة، والعنوان لغرض التوصيل فقط.
           </PolicyItem>
-          <PolicyItem title="استخدام الصور">
-            الصور التي ترفعها تستخدم <strong>حصرياً</strong> لغرض طباعة وتصنيع لوحتك الجدارية. لا نشارك صورك مع أي طرف ثالث. لا نستخدم صورك في التسويق أو العرض بدون إذنك الصريح.
+          <PolicyItem title="استخدام البيانات">
+            بياناتك تستخدم <strong>حصرياً</strong> لغرض توصيل طلبك والتواصل معك بخصوصه. لا نشارك بياناتك مع أي طرف ثالث.
           </PolicyItem>
           <PolicyItem title="حذف البيانات">
-            يتم حذف جميع الصور والبيانات الشخصية من أنظمتنا بعد <strong>٣٠ يوماً</strong> من تاريخ تسليم الطلب. يمكنك طلب حذف بياناتك فوراً في أي وقت عبر الواتساب.
+            يتم حذف جميع البيانات الشخصية من أنظمتنا بعد <strong>٣٠ يوماً</strong> من تاريخ تسليم الطلب. يمكنك طلب حذف بياناتك فوراً عبر الواتساب.
           </PolicyItem>
           <PolicyItem title="حماية البيانات">
-            نستخدم إجراءات أمنية معقولة لحماية بياناتك. الصور تخزن على خوادم آمنة ولا يمكن الوصول إليها إلا من قبل فريق التصنيع.
+            نستخدم إجراءات أمنية لحماية بياناتك. الإيصالات تخزن على خوادم آمنة ولا يمكن الوصول إليها إلا من قبل فريقنا.
           </PolicyItem>
         </PolicySection>
 
@@ -76,30 +75,30 @@ export default function PoliciesPage() {
         <PolicySection id="returns" title="الإسترجاع والضمان">
           <div className="neon-border rounded-xl p-5 mb-6 border-neon-cyan/20 bg-neon-cyan/[0.02]">
             <p className="text-sm leading-relaxed">
-              <strong className="text-neon-cyan">منتج مخصص حسب الطلب:</strong> جميع لوحاتنا
-              تُصنع خصيصاً لك وتحمل صورتك الشخصية. لذلك، وحسب نظام التجارة الإلكترونية السعودي،{" "}
-              <strong>لا يمكن استرجاع أو استبدال المنتجات المخصصة</strong> إلا في حال وجود
-              عيب مصنعي.
+              <strong className="text-neon-cyan">منتجات إلكترونية جاهزة:</strong> جميع
+              لوحات النيون منتجات إلكترونية جاهزة. حسب نظام التجارة الإلكترونية السعودي،
+              لك حق استرجاع المنتج <strong>خلال ٧ أيام</strong> من الاستلام بشرط أن
+              يكون بحالته الأصلية وبتغليفه الأصلي.
             </p>
           </div>
           <PolicyItem title="الضمان على العيوب المصنعية">
-            إذا استلمت لوحة وفيها عيب مصنعي (تشقق، تقشير، خلل في الإضاءة للوحة النيون، إطار مكسور)، نستبدلها لك مجاناً خلال <strong>٧ أيام</strong> من تاريخ الاستلام. فقط صور العيب وأرسله لنا على الواتساب.
+            إذا استلمت لوحة وفيها عيب مصنعي (خلل في الإضاءة، إطار متضرر)، نستبدلها لك مجاناً خلال <strong>٧ أيام</strong> من تاريخ الاستلام. صور العيب وأرسله لنا على الواتساب.
           </PolicyItem>
           <PolicyItem title="غير مشمول بالضمان">
-            التلف الناتج عن سوء الاستخدام، السقوط، التركيب الخاطئ، أو التعرض المباشر للماء والرطوبة العالية. تغير لون الصورة مع مرور الوقت (طبيعي في جميع المطبوعات).
+            التلف الناتج عن سوء الاستخدام، السقوط، التركيب الخاطئ، أو التعرض المباشر للماء والرطوبة العالية.
           </PolicyItem>
         </PolicySection>
 
         {/* Shipping */}
         <PolicySection id="shipping" title="الشحن والتوصيل">
           <PolicyItem title="مدة التوصيل">
-            <strong>٣-٥ أيام عمل</strong> من تاريخ استلام الصورة وتأكيد الطلب. في حال وجود تأخير غير متوقع، نتواصل معك فوراً.
+            <strong>٣-٥ أيام عمل</strong> من تاريخ تأكيد الطلب واستلام الإيصال. نوفر لك رقم تتبع شحنتك فور صدوره.
           </PolicyItem>
           <PolicyItem title="رسوم الشحن">
-            <strong className="text-neon-lime">الشحن مجاني</strong> على جميع الطلبات ولكل مناطق المملكة العربية السعودية.
+            <strong className="text-neon-cyan">الشحن مجاني</strong> على جميع الطلبات ولكل مناطق المملكة العربية السعودية.
           </PolicyItem>
           <PolicyItem title="جهة الشحن">
-            نتعامل مع شركات شحن موثوقة. نوفر لك رقم تتبع شحنتك فور صدوره.
+            نتعامل مع شركات شحن موثوقة داخل المملكة لضمان وصول طلبك بأمان وسرعة.
           </PolicyItem>
           <PolicyItem title="التلف أثناء الشحن">
             إذا وصلتك اللوحة متضررة بسبب الشحن، <strong>نستبدلها لك مجاناً</strong>. صور الضرر فور استلامك وأرسله لنا خلال ٢٤ ساعة.
@@ -109,23 +108,17 @@ export default function PoliciesPage() {
         {/* Terms */}
         <PolicySection id="terms" title="شروط الخدمة">
           <PolicyItem title="الطلب والتأكيد">
-            يتم تأكيد الطلب بعد استلام الصورة والموافقة على التصميم عبر الواتساب. يبدأ التصنيع بعد التأكيد.
+            يتم تأكيد الطلب بعد استلام صورة إيصال التحويل. يبدأ تجهيز الشحن بعد التأكيد.
           </PolicyItem>
           <PolicyItem title="الإلغاء">
-            يمكنك إلغاء طلبك <strong>خلال ساعتين</strong> من تأكيد الطلب وقبل بدء التصنيع. بعد بدء التصنيع، لا يمكن الإلغاء لأن المنتج مخصص.
-          </PolicyItem>
-          <PolicyItem title="المحتوى">
-            نحتفظ بالحق في رفض أي صورة تحتوي على محتوى مخالف للقوانين السعودية أو مسيء أو غير لائق. في هذه الحالة يتم إبلاغك وإلغاء الطلب.
-          </PolicyItem>
-          <PolicyItem title="حقوق الملكية">
-            أنت تقر بأنك تملك حقوق الصورة المرفوعة أو لديك إذن باستخدامها. Neon-K غير مسؤولة عن أي مخالفات حقوق ملكية فكرية.
+            يمكنك إلغاء طلبك <strong>خلال ساعتين</strong> من تأكيد الطلب. بعد بدء تجهيز الشحن، لا يمكن الإلغاء.
           </PolicyItem>
           <PolicyItem title="الأسعار">
-            الأسعار قابلة للتغيير بدون إشعار مسبق. السعر المعتمد هو السعر المتفق عليه عند تأكيد الطلب.
+            الأسعار قابلة للتغيير بدون إشعار مسبق. السعر المعتمد هو السعر المعروض وقت تقديم الطلب.
           </PolicyItem>
         </PolicySection>
 
-        {/* Legal link to English terms */}
+        {/* Legal link */}
         <div className="mt-10 p-5 rounded-xl border border-white/5 text-center">
           <p className="text-text-secondary/60 text-xs mb-2">
             للاطلاع على الشروط القانونية الكاملة
@@ -149,7 +142,7 @@ export default function PoliciesPage() {
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-full bg-[#25D366] text-white font-bold hover:bg-[#1da851] transition-colors"
             >
-              واتساب: <span dir="ltr">+966 58 119 4038</span>
+              واتساب: +966 58 119 4038
             </a>
             <a
               href="mailto:nneon.kk@gmail.com"
@@ -161,7 +154,6 @@ export default function PoliciesPage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="py-8 px-4 border-t border-border text-center">
         <p className="text-xs text-text-secondary/50">
           © 2026 Neon-K. جميع الحقوق محفوظة
