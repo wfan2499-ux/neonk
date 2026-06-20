@@ -256,7 +256,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-bg">
-      <div className="max-w-4xl mx-auto px-4 py-10 md:py-16">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8 md:py-16">
         {/* Back link */}
         <Link
           href="/"
@@ -499,7 +499,7 @@ export default function CheckoutPage() {
 
           {/* ── Right: Order summary ── */}
           <aside className="lg:col-span-2">
-            <div className="neon-card p-6 sticky top-24 space-y-4">
+            <div className="neon-card p-5 sm:p-6 lg:sticky lg:top-24 space-y-4">
               <h2 className="text-lg font-bold">ملخص الطلب</h2>
 
               <div className="divide-y divide-border">

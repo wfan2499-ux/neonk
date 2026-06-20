@@ -78,7 +78,7 @@ export default function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="fixed inset-0 z-[calc(var(--z-overlay)+1)] flex flex-col items-center justify-center px-6 pointer-events-none"
+              className="fixed inset-0 z-[calc(var(--z-overlay)+1)] flex flex-col items-center justify-start overflow-y-auto pt-20 pb-12 px-6 pointer-events-none"
             >
               <nav className="flex flex-col items-center gap-5 w-full max-w-sm pointer-events-auto">
                 {links.map((link, i) => (
