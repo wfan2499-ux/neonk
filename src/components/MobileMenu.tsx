@@ -130,7 +130,7 @@ function MenuLink({
   href: string;
   label: string;
   delay: number;
-  reduce: boolean;
+  reduce: boolean | null;
   close: () => void;
   primary?: boolean;
 }) {
